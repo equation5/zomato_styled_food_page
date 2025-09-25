@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header id="nav" style="display:flex; gap:12px; align-items:center; padding:10px 0;">
+        <a href="./index.html">Home</a>
+        <a href="./restaurants.html">Restaurants</a>
+        <a href="./about.html">About</a>
+        <a href="./profile.html">Profile</a>
+        <span id="navUser" style="margin-left: 10px;"></span>
+        <a id="navLogin" href="./signin.html" style="margin-left: auto;">Sign In</a>
+        <button id="navLogout" style="display:none; margin-left: auto;">Logout</button>
+    </header>
+    <main style="max-width:800px;margin:20px auto;">
+        <h2 style="color:#e03546">Your Profile</h2>
+        <div id="profileBox"></div>
+    </main>
+    <script src="./auth.js"></script>
+    <script>
+    (function(){
+        const token = localStorage.getItem('auth_token');
+        const isGuest = localStorage.getItem('guest_mode') === 'true';
+        if(!token && !isGuest){
+            window.location.replace('./signin.html');
+            return;
+        }
+        const userStr = localStorage.getItem('auth_user');
+        const user = userStr ? JSON.parse(userStr) : { name: 'Guest' };
+        const box = document.getElementById('profileBox');
+        box.innerHTML = '<div style="border:1px solid #eee;padding:16px;border-radius:12px"><div><strong>Name:</strong> '+(user.name||'')+'</div><div><strong>Email:</strong> '+(user.email||'')+'</div></div>';
+    })();
+    </script>
+</body>
+</html>
+

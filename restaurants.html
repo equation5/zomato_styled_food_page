@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header id="nav" style="display:flex; gap:12px; align-items:center; padding:10px 0;">
+        <a href="./index.html">Home</a>
+        <a href="./restaurants.html">Restaurants</a>
+        <a href="./about.html">About</a>
+        <a href="./profile.html">Profile</a>
+        <span id="navUser" style="margin-left: 10px;"></span>
+        <a id="navLogin" href="./signin.html" style="margin-left: auto;">Sign In</a>
+        <button id="navLogout" style="display:none; margin-left: auto;">Logout</button>
+    </header>
+
+    <div id="head">
+        <button id="filterBtn">Filters</button>
+        <button id="Offers">Offers</button>
+        <button id="Rating">Rating 3+</button>
+        <button id="Alcohol"> Serves Alcohol</button>
+        <button id="Open">Open Now</button>
+    </div>
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <h3>Sort Restaurants</h3>
+            <form id="sortForm" class="sort-options">
+                <label>
+                    <input type="radio" name="sort" value="rating">
+                    Rating (High → Low)
+                </label><br>
+                <label>
+                    <input type="radio" name="sort" value="priceHigh">
+                    Cost (High → Low)
+                </label><br>
+                <label>
+                    <input type="radio" name="sort" value="priceLow">
+                    Cost (Low → High)
+                </label><br>
+                <label>
+                    <input type="radio" name="sort" value="distance">
+                    Distance (Nearest First)
+                </label>
+            </form>
+            <button id="applySort">Apply</button>
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+
+    <div id="root"></div>
+    <script src="./auth.js"></script>
+    <script>
+    (function(){
+        const token = localStorage.getItem('auth_token');
+        const isGuest = localStorage.getItem('guest_mode') === 'true';
+        if(!token && !isGuest){
+            window.location.replace('./signin.html');
+        }
+    })();
+    </script>
+    <script src="./app.js"></script>
+</body>
+</html>
+

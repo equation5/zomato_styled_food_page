@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .auth-container{max-width:360px;margin:40px auto;padding:24px;border:1px solid #eee;border-radius:12px}
+        .auth-container h2{margin-top:0;color:#e03546}
+        .auth-container label{display:block;margin:8px 0 4px}
+        .auth-container input{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px}
+        .auth-container button{margin-top:12px;width:100%;padding:10px;background:#e03546;color:#fff;border:none;border-radius:8px;cursor:pointer}
+        .auth-toggle{text-align:center;margin-top:10px;}
+        .error{color:#b00020;margin-top:8px}
+    </style>
+    <script defer src="./auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const form = document.getElementById('authForm');
+            const modeToggle = document.getElementById('modeToggle');
+            const title = document.getElementById('formTitle');
+            const guestBtn = document.getElementById('guestBtn');
+            let mode = 'login';
+            modeToggle.addEventListener('click', function(){
+                mode = mode === 'login' ? 'register' : 'login';
+                title.textContent = mode === 'login' ? 'Sign In' : 'Create Account';
+                document.getElementById('nameGroup').style.display = mode === 'register' ? 'block' : 'none';
+                modeToggle.textContent = mode === 'login' ? 'Need an account? Register' : 'Have an account? Sign In';
+            });
+            guestBtn.addEventListener('click', function(){
+                localStorage.setItem('guest_mode', 'true');
+                window.location.href = './index.html';
+            });
+            form.addEventListener('submit', async function(e){
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const endpoint = mode === 'login' ? '/api/auth/login' : '/api/auth/register';
+                const base = localStorage.getItem('API_BASE') || 'http://localhost:4000';
+                try{
+                    const res = await fetch(base + endpoint, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name, email, password })});
+                    const data = await res.json();
+                    if(!res.ok){
+                        document.getElementById('error').textContent = data.error || 'Failed';
+                        return;
+                    }
+                    localStorage.setItem('auth_token', data.token);
+                    localStorage.setItem('auth_user', JSON.stringify(data.user));
+                    window.location.href = './index.html';
+                }catch(err){
+                    document.getElementById('error').textContent = 'Network error';
+                }
+            });
+        });
+    </script>
+    </head>
+<body>
+    <header id="nav" style="display:flex; gap:12px; align-items:center; padding:10px 0;">
+        <a href="./index.html">Home</a>
+    </header>
+    <div class="auth-container">
+        <h2 id="formTitle">Sign In</h2>
+        <form id="authForm">
+            <div id="nameGroup" style="display:none">
+                <label for="name">Name</label>
+                <input id="name" type="text" placeholder="Your name">
+            </div>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required>
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="••••••••" required>
+            <div class="error" id="error"></div>
+            <button type="submit">Continue</button>
+        </form>
+        <div class="auth-toggle">
+            <button id="modeToggle" type="button">Need an account? Register</button>
+            <div style="margin-top:10px">
+                <button id="guestBtn" type="button">Continue as Guest</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

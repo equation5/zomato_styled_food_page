@@ -1,0 +1,222 @@
+#root {
+    display: flex;
+    flex-wrap: wrap;
+    /* allows multiple rows */
+    justify-content: center;
+    /* center cards horizontally */
+    gap: 20px;
+    /* spacing between cards */
+    margin-top: 20px;
+}
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #fff;
+}
+
+#nav a {
+    color: #333;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+#nav a:hover {
+    background: #fff5f6;
+    color: #e03546;
+}
+
+#nav button {
+    background: transparent;
+    border: none;
+    color: #333;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#nav button:hover {
+    background: #fff5f6;
+    color: #e03546;
+}
+
+#head {
+    display: flex;
+    gap: 12px;
+    /* spacing between buttons */
+    flex-wrap: wrap;
+    /* allow wrapping on smaller screens */
+    justify-content: center;
+    align-items: center;
+    background-color: #e03546;
+    padding: 20px;
+    border-radius: 18px;
+}
+
+#head button {
+    border: 1px solid #d3d3d3;
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    /* rounded pills */
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#head button:hover {
+    border-color: #e03546;
+    /* Zomato red */
+    color: #e03546;
+    background: #fff5f6;
+    /* light red background */
+}
+
+#head button:active {
+    background: #e03546;
+    color: #fff;
+    border-color: #e03546;
+}
+        /* Card container */
+        .card {
+            width: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            transition: transform 0.2s;
+        }
+    
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    
+        /* Card image */
+        .card_image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+    
+        /* Card content */
+        .card_content {
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+    
+        /* Header: name and rating */
+        .card_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .restaurant_name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+    
+        .rating {
+            background-color: #48c774;
+            /* green like Zomato rating */
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    
+        /* Location */
+        .card_location {
+            display: flex;
+                justify-content: space-between; 
+            font-size: 14px;
+            color: #777;
+        }
+    
+        /* Footer */
+        .card_footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #555;
+            border-top: 1px solid #eee;
+            padding-top: 6px;
+        }
+                /* Sort button */
+                #filterBtn {
+                    background: #e03546;
+                    color: #fff;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+        
+                /* Popup background */
+                .popup-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.5);
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .popup-overlay.active {
+                    display: flex;
+                }
+                /* Popup box */
+                .popup {
+                    background: #fff;
+                    padding: 20px;
+                    border-radius: 12px;
+                    width: 300px;
+                }
+        
+                .popup h3 {
+                    margin-top: 0;
+                    color: #e03546;
+                    text-align: center;
+                }
+        
+                /* Sort options list */
+                .sort-options {
+                    list-style: none;
+                    padding: 0;
+                    margin: 10px 0;
+                }
+        
+                .sort-options li {
+                    padding: 10px;
+                    border-bottom: 1px solid #eee;
+                    cursor: pointer;
+                    transition: background 0.2s;
+                }
+        
+                .sort-options li:hover {
+                    background: #fff5f6;
+                    color: #e03546;
+                }
+        
+                .popup button {
+                    margin-top: 15px;
+                    background: #e03546;
+                    color: #fff;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    display: block;
+                    width: 100%;
+                } 
