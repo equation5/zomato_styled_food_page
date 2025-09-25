@@ -1,29 +1,23 @@
-Setup (Windows)
+# Zomato Styled Food Page
 
-1) Backend
-- Install Node.js LTS.
-- Open PowerShell in `project_final`.
-- Create `.env` in `project_final` with:
-  MONGO_URI=mongodb://127.0.0.1:27017/nexus_auth
-  JWT_SECRET=change_this_secret
-  PORT=4000
-- Run: `npm install`
-- Start: `npm run dev`
+A visually appealing food/restaurant webpage inspired by Zomato, built using HTML, CSS, and JavaScript. This project showcases modern layout techniques, styling, and responsive design principles.
 
-2) MongoDB
-- Use local MongoDB (MongoDB Community) or Atlas.
-- Update `MONGO_URI` if using Atlas.
+## Features
 
-3) Frontend
-- Open `index.html` directly in a browser, or serve statically (e.g., VSCode Live Server).
-- Sign in/register at `signin.html`. The app expects backend at `http://localhost:4000`.
+- **Responsive Design**: Works on mobile, tablet, and desktop screens.
+- **Styled Layout**: Includes a header, food categories, and featured dishes sections.
+- **Interactive Elements**: Buttons, hover effects, and menu interactions.
+- **Reusable Components**: Organized structure for easy maintenance.
 
-API
-- POST /api/auth/register { name, email, password }
-- POST /api/auth/login { email, password }
+## Installation
 
-Notes
-- Auth token is stored in localStorage; nav shows Sign In/Logout.
-- To change API base, set localStorage key `API_BASE`.
+1. **Clone the repository**
+```bash
+git clone https://github.com/equation5/zomato_styled_food_page.git
+cd project_final
+
+npm install
+
+npm start
 
 
